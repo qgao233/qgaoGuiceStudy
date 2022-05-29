@@ -8,3 +8,4 @@
 * [Guice bean的重用(scope)](chapter4/index.md)
 * [Guice bindings](chapter5/index.md)
   * [1 Linked Bindings](chapter5/section1/index.md)
+  * [2 Binding Annotations](chapter5/section2/index.md)

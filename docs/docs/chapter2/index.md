@@ -27,7 +27,7 @@ public class GuiceDemo {
 
   /**
    * 用来绑定message和count的module，会被Greeter类依赖
-   * 除了下面的注解方法，还可以使用上一节中提到的bind方法进行绑定
+   * 除了下面的注解方法，还可以使用上一章中提到的bind方法进行绑定
    */
   static class DemoModule extends AbstractModule {
     @Provides               // Guice提供的注解，表示会被放入Guice容器中
