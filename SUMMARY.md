@@ -6,3 +6,5 @@
 * [Guice 快速上手](chapter2/index.md)
 * [Guice 框架模型(mental modal)](chapter3/index.md)
 * [Guice bean的重用(scope)](chapter4/index.md)
+* [Guice bindings](chapter5/index.md)
+  * [1 Linked Bindings](chapter5/section1/index.md)
