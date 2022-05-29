@@ -113,18 +113,18 @@ class DemoModule extends AbstractModule {
 要想使用Guice你得知道2个东西：
 
 1. Configuration：我们的程序需要往`Guice map`里塞东西
-2. Injection：我们的程序叫Guice从它的map里创建和获取我们想要的bean实例
+2. Injection：我们的程序叫`Guice`从它的`map`里创建和获取我们想要的`bean`实例
 
 ### 2.1 Configuration
 
-怎么给Guice的配置塞东西，继而填充到Guice map里面？
+怎么给`Guice`的配置塞东西，继而填充到`Guice map`里面？
 
-用Guice modules (或者[Just-In-Time bindings]())，通常有2种方式：
+继承`Guice`的`AbstractModule` (或者[Just-In-Time bindings]())，通常有2种方式：
 
 1. 使用像`@Provides`这样的注解
 2. 全用`Guice`的`Domain Specific Language` (DSL)
 
-概念上(Conceptually)，Guice的API提供了一些简单的方法来操作(manipulate)Guice map，并且直截了当，下面是java 8的语法写的一些例子，简单明了：
+概念上(`Conceptually`)，`Guice`的API提供了一些简单的方法来操作(`manipulate`)`Guice map`，并且直截了当，下面是`java 8`的语法写的一些例子，简单明了：
 
 Guice DSL syntax（我们程序中的写法）|Mental model（Guice内部做的事）
 -|-
@@ -135,7 +135,7 @@ bind(key).to(anotherKey)|map.put(key, map.get(anotherKey))(linked binding)
 
 ### 2.2 Injection
 
-依赖注入中最重要的事情就是，你只需要声明你需要这些依赖，自然会由容器返回给你想要的，而不是脱离容器的使用，自己从外面其它方式获得你想要的bean。
+依赖注入中最重要的事情就是，你只需要声明你需要这些依赖，自然会由容器返回给你想要的，而不是脱离容器的使用，自己从外面其它方式获得你想要的`bean`。
 
 像下面这样：
 
@@ -160,6 +160,6 @@ Database provideDatabase(
 
 >When injecting a thing that has dependencies of its own, Guice recursively injects the dependencies.
 
-当注入A时，发现A还依赖B，然后去注入B，结果B又依赖C，接着就去注入C，这样dfs递归地向上遍历(up through)去注入会形成依赖的一条线的树状图。
+当注入`A`时，发现`A`还依赖`B`，然后去注入`B`，结果`B`又依赖`C`，接着就去注入`C`，这样dfs递归地向上遍历(`up through`)去注入会形成依赖的一条线的树状图。
 
-为了使用Injector，Guice会去检查这个依赖树，如果出问题了会抛CreationException。
+为了使用Injector，Guice会去检查这个依赖树，如果出问题了会抛`CreationException`。
