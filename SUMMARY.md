@@ -9,3 +9,4 @@
 * [Guice bindings](chapter5/index.md)
   * [1 Linked Bindings](chapter5/section1/index.md)
   * [2 Binding Annotations](chapter5/section2/index.md)
+  * [3 Instance Bindings](chapter5/section3/index.md)
