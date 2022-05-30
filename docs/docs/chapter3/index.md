@@ -1,4 +1,4 @@
-# 框架模型(mental modal)
+# Guice 框架模型(mental modal)
 
 * buzzword：梗
 * jargon：行话，术语
