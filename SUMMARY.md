@@ -12,3 +12,4 @@
   * [3 Instance Bindings](chapter5/section3/index.md)
   * [4 @Provides Methods](chapter5/section4/index.md)
   * [5 Provider Bindings](chapter5/section5/index.md)
+  * [6 Untargeted Bindings](chapter5/section6/index.md)
