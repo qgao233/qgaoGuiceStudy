@@ -10,3 +10,4 @@
   * [1 Linked Bindings](chapter5/section1/index.md)
   * [2 Binding Annotations](chapter5/section2/index.md)
   * [3 Instance Bindings](chapter5/section3/index.md)
+  * [4 @Provides Methods](chapter5/section4/index.md)
