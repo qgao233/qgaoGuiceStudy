@@ -1,0 +1,487 @@
+
+<!DOCTYPE HTML>
+<html lang="" >
+    <head>
+        <meta charset="UTF-8">
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <title>Guice 框架模型(mental modal) · GitBook</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="description" content="">
+        <meta name="generator" content="GitBook 3.2.3">
+        
+        
+        
+    
+    <link rel="stylesheet" href="../gitbook/style.css">
+
+    
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-search-pro/search.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-back-to-top-button/plugin.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-chapter-fold/chapter-fold.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-code/plugin.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-splitter/splitter.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-tbfed-pagefooter/footer.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-page-treeview/style.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-expandable-chapters/expandable-chapters.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-page-toc-button/plugin.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-highlight/website.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-fontsettings/website.css">
+                
+            
+        
+
+    
+
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+
+        
+    
+    
+    <meta name="HandheldFriendly" content="true"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="../gitbook/images/apple-touch-icon-precomposed-152.png">
+    <link rel="shortcut icon" href="../gitbook/images/favicon.ico" type="image/x-icon">
+
+    
+    <link rel="next" href="../chapter4/" />
+    
+    
+    <link rel="prev" href="../chapter2/" />
+    
+
+    </head>
+    <body>
+        
+<div class="book">
+    <div class="book-summary">
+        
+            
+<div id="book-search-input" role="search">
+    <input type="text" placeholder="Type to search" />
+</div>
+
+            
+                <nav role="navigation">
+                
+
+
+<ul class="summary">
+    
+    
+
+    
+
+    
+        
+        
+    
+        <li class="chapter " data-level="1.1" data-path="../">
+            
+                <a href="../">
+            
+                    
+                    Introduction
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2" data-path="../chapter1/">
+            
+                <a href="../chapter1/">
+            
+                    
+                    Guice 起因(发音juice)
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3" data-path="../chapter2/">
+            
+                <a href="../chapter2/">
+            
+                    
+                    Guice 快速上手
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter active" data-level="1.4" data-path="./">
+            
+                <a href="./">
+            
+                    
+                    Guice 框架模型(mental modal)
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5" data-path="../chapter4/">
+            
+                <a href="../chapter4/">
+            
+                    
+                    Guice bean的重用(scope)
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+
+    <li class="divider"></li>
+
+    <li>
+        <a href="https://www.gitbook.com" target="blank" class="gitbook-link">
+            Published with GitBook
+        </a>
+    </li>
+</ul>
+
+
+                </nav>
+            
+        
+    </div>
+
+    <div class="book-body">
+        
+            <div class="body-inner">
+                
+                    
+
+<div class="book-header" role="navigation">
+    
+
+    <!-- Title -->
+    <h1>
+        <i class="fa fa-circle-o-notch fa-spin"></i>
+        <a href=".." >Guice 框架模型(mental modal)</a>
+    </h1>
+</div>
+
+
+
+
+                    <div class="page-wrapper" tabindex="-1" role="main">
+                        <div class="page-inner">
+                            
+<div id="book-search-results">
+    <div class="search-noresults">
+    
+                                <section class="normal markdown-section">
+                                
+                                <div class="treeview__container"><div class="treeview__container-title"><span class="treeview__main-title">Treeview</span><span class="treeview__copyright">Copyright &#xA9; qgao 2021-* all right reserved, powered by <a href="https://github.com/aleen42" target="_blank">aleen42</a></span></div><ul>
+<li><div><a href="#1-guice&#x5C31;&#x662F;&#x4E2A;map">1 Guice&#x5C31;&#x662F;&#x4E2A;map</a><i class="level__parent level__item level__parent--opened" state="opened" onclick="var curState = this.getAttribute(&apos;state&apos;);var nextState = curState === &apos;opened&apos; ? &apos;hidden&apos; : &apos;opened&apos;;this.setAttribute(&apos;state&apos;, nextState);this.className = this.className.split(curState).join(nextState);var list = this.parentNode.nextElementSibling;if (nextState === &apos;hidden&apos;) {    list.style.display = &apos;none&apos;;} else {    list.style.display = &apos;block&apos;;}"></i></div>
+<ul>
+<li><div><a href="#11-guice-key">1.1 Guice key</a><i></i></div></li>
+<li><div><a href="#12-guice-providers">1.2 Guice Providers</a><i></i></div></li>
+</ul></li>
+<li><div><a href="#2-&#x4F7F;&#x7528;-guice">2 &#x4F7F;&#x7528; Guice</a><i class="level__parent level__item level__parent--opened" state="opened" onclick="var curState = this.getAttribute(&apos;state&apos;);var nextState = curState === &apos;opened&apos; ? &apos;hidden&apos; : &apos;opened&apos;;this.setAttribute(&apos;state&apos;, nextState);this.className = this.className.split(curState).join(nextState);var list = this.parentNode.nextElementSibling;if (nextState === &apos;hidden&apos;) {    list.style.display = &apos;none&apos;;} else {    list.style.display = &apos;block&apos;;}"></i></div>
+<ul>
+<li><div><a href="#21-configuration">2.1 Configuration</a><i></i></div></li>
+<li><div><a href="#22-injection">2.2 Injection</a><i></i></div></li>
+</ul></li>
+<li><div><a href="#3-&#x4F9D;&#x8D56;&#x6811;&#x72B6;&#x56FE;">3 &#x4F9D;&#x8D56;&#x6811;&#x72B6;&#x56FE;</a><i></i></div></li>
+</ul>
+</div>
+
+<h1 id="&#x6846;&#x67B6;&#x6A21;&#x578B;mental-modal">&#x6846;&#x67B6;&#x6A21;&#x578B;(mental modal)</h1>
+<ul>
+<li>buzzword&#xFF1A;&#x6897;</li>
+<li>jargon&#xFF1A;&#x884C;&#x8BDD;&#xFF0C;&#x672F;&#x8BED;</li>
+</ul>
+<p>&#x672C;&#x7AE0;&#x4E3B;&#x8981;&#x4ECB;&#x7ECD;<code>Guice</code>&#x7684;&#x5B9E;&#x73B0;&#x6A21;&#x578B;&#xFF0C;&#x8BA9;&#x6211;&#x4EEC;&#x66F4;&#x5BB9;&#x6613;&#x53BB;&#x601D;&#x8003;&#x8FD9;&#x4E2A;&#x6846;&#x67B6;&#x7684;&#x5DE5;&#x4F5C;&#x539F;&#x7406;&#x3002;</p>
+<h2 id="1-guice&#x5C31;&#x662F;&#x4E2A;map">1 Guice&#x5C31;&#x662F;&#x4E2A;map</h2>
+<p>&#x548C;<code>spring</code>&#x4E2D;&#x7684;<code>ioc</code>&#x5BB9;&#x5668;&#x5F88;&#x50CF;&#xFF0C;<code>Guice</code>&#x5C31;&#x662F;&#x4E2A;<code>map</code>&#xFF0C;&#x5176;&#x4E2D;&#x7684;&#x6BCF;&#x4E00;&#x4E2A;<code>entry</code>&#x5305;&#x542B;2&#x4E2A;&#x90E8;&#x5206;&#xFF1A;</p>
+<ul>
+<li>Guice key: map&#x7684;key&#xFF0C;&#x5B58;&#x7684;&#x662F;Guice&#x5B9A;&#x4E49;&#x7684;&#x4E00;&#x4E2A;Key&#x7C7B;</li>
+<li>Provider: map&#x7684;value&#xFF0C;&#x5B58;&#x7684;&#x662F;Guice&#x5B9A;&#x4E49;&#x7684;&#x4E00;&#x4E2A;Provider&#x7C7B;&#xFF0C;&#x91CC;&#x9762;&#x5B9A;&#x4E49;&#x4E86;&#x5982;&#x4F55;&#x8FD4;&#x56DE;&#x6211;&#x4EEC;&#x60F3;&#x8981;&#x7684;bean&#x5B9E;&#x4F8B;</li>
+</ul>
+<h3 id="11-guice-key">1.1 Guice key</h3>
+<p>&#x4E0A;&#x4E00;&#x7AE0;<a href="../chapter2/">&#x5FEB;&#x901F;&#x4E0A;&#x624B;</a>&#x4E2D;&#x7684;<code>Greeter</code>&#x7C7B;&#x5728;&#x6784;&#x9020;&#x65B9;&#x6CD5;&#x4E2D;&#x58F0;&#x660E;&#x7684;2&#x4E2A;&#x4F9D;&#x8D56;&#xFF0C;&#x5728;<code>Guice map</code>&#x4E2D;&#x7684;<code>key</code>&#x662F;&#x8FD9;&#x6837;&#x8868;&#x793A;&#x7684;&#xFF1A;</p>
+<ul>
+<li>@Message String&#xFF1A;map&#x4E2D;&#x4E3A; <code>Key&lt;String&gt;</code></li>
+<li>@Count int&#xFF1A;map&#x4E2D;&#x4E3A; <code>Key&lt;Integer&gt;</code></li>
+</ul>
+<p><code>java</code>&#x4E2D;&#x8868;&#x793A;&#x4E00;&#x4E2A;&#x7C7B;&#x578B;&#x7684;<code>key</code>&#x6700;&#x7B80;&#x5355;&#x7684;&#x8868;&#x8FBE;&#x5F62;&#x5F0F;&#x4E3A;&#xFF1A;</p>
+<pre><code>// &#x6807;&#x8BC6;&#x4E00;&#x4E2A;String&#x7C7B;&#x5B9E;&#x4F8B;&#x7684;&#x4F9D;&#x8D56;
+Key&lt;String&gt; databaseKey = Key.get(String.class);
+</code></pre><p>&#x4F46;&#x662F;&#x7A0B;&#x5E8F;&#x603B;&#x4F1A;&#x6709;&#x76F8;&#x540C;&#x7C7B;&#x578B;&#x7684;&#x4F9D;&#x8D56;&#xFF1A;</p>
+<pre><code>final class MultilingualGreeter {
+  private String englishGreeting;
+  private String spanishGreeting;
+
+  MultilingualGreeter(String englishGreeting, String spanishGreeting) {
+    this.englishGreeting = englishGreeting;
+    this.spanishGreeting = spanishGreeting;
+  }
+}
+</code></pre><p>&#x56E0;&#x6B64;<code>Guice</code>&#x4F7F;&#x7528;<a href="">&#x7ED1;&#x5B9A;&#x6CE8;&#x89E3;(bind annotations)</a>&#x6765;&#x533A;&#x5206;&#x76F8;&#x540C;&#x7C7B;&#x578B;&#x7684;&#x4F9D;&#x8D56;&#xFF0C;&#x4F7F;&#x4E4B;&#x53EF;&#x4EE5;&#x533A;&#x5206;&#x5F00;&#x662F;&#x4E0D;&#x540C;&#x7684;&#x4F9D;&#x8D56;&#xFF1A;</p>
+<pre><code>@Inject
+MultilingualGreeter(@English String englishGreeting, @Spanish String spanishGreeting) {
+    this.englishGreeting = englishGreeting;
+    this.spanishGreeting = spanishGreeting;
+}
+</code></pre><p>&#x7528;&#x4E86;<strong>&#x7ED1;&#x5B9A;&#x6CE8;&#x89E3;</strong>&#x540E;&#x7684;<code>key</code>&#x53EF;&#x4EE5;&#x8FD9;&#x6837;&#x53D6;&#xFF1A;</p>
+<pre><code>Key&lt;String&gt; englishGreetingKey = Key.get(String.class, English.class);
+Key&lt;String&gt; spanishGreetingKey = Key.get(String.class, Spanish.class);
+</code></pre><p>&#x6700;&#x540E;&#xFF0C;&#x5F53;&#x7A0B;&#x5E8F;&#x8C03;&#x7528;<code>Greeter</code>&#x7684;&#x6784;&#x9020;&#x65B9;&#x6CD5;&#x60F3;&#x83B7;&#x5F97;&#x4E24;&#x4E2A;&#x53C2;&#x6570;&#x7684;&#x4F9D;&#x8D56;&#x65F6;&#xFF0C;&#x5B9E;&#x9645;&#x4E0A;<code>Guice</code>&#x5185;&#x90E8;&#x5E2E;&#x6211;&#x4EEC;&#x505A;&#x4E86;&#x8FD9;&#x6837;&#x7684;&#x4E8B;&#xFF1A;</p>
+<pre><code>String english = injector.getInstance(Key.get(String.class, English.class));
+String spanish = injector.getInstance(Key.get(String.class, Spanish.class));
+MultilingualGreeter greeter = new MultilingualGreeter(english, spanish);
+</code></pre><p>&#x603B;&#x7ED3;&#xFF1A;<code>Guice Key</code>&#x5C31;&#x662F;&#x4E00;&#x4E2A;&#x7528;&#x6765;&#x6807;&#x660E;&#x4F9D;&#x8D56;&#xFF0C;&#x53EF;&#x4EE5;&#x9009;&#x62E9;&#x4F7F;&#x7528;&#x7ED1;&#x5B9A;&#x6CE8;&#x89E3;&#x642D;&#x914D;&#x4F7F;&#x7528;&#x7684;&#x4E00;&#x4E2A;&#x7C7B;&#x3002;</p>
+<h3 id="12-guice-providers">1.2 Guice Providers</h3>
+<p>&#x8FD9;&#x4E2A;value&#x7528;&#x6765;&#x5B58;bean&#x7684;&#xFF0C;</p>
+<p><code>Provider</code>&#x662F;&#x4E2A;&#x63A5;&#x53E3;&#xFF0C;&#x58F0;&#x660E;&#x4E86;&#x4E00;&#x4E2A;<code>get</code>&#x65B9;&#x6CD5;:</p>
+<p>interface Provider<t> {
+  /<strong> &#x63D0;&#x4F9B;T&#x7C7B;&#x7684;&#x5B9E;&#x4F8B; </strong>/
+  T get();
+}</t></p>
+<p>&#x6BCF;&#x4E2A;&#x5B9E;&#x4F8B;&#x4E86;&#x8BE5;&#x63A5;&#x53E3;&#x7684;&#x7C7B;&#x90FD;&#x53EF;&#x4EE5;&#x81EA;&#x5B9A;&#x4E49;&#x4F60;&#x60F3;&#x8981;&#x8FD4;&#x56DE;&#x7684;&#x7C7B;&#x5B9E;&#x4F8B;&#xFF0C;&#x53EF;&#x4EE5;&#x4F7F;&#x7528;&#xFF1A;</p>
+<ul>
+<li>&#x76F4;&#x63A5;new</li>
+<li>&#x7528;&#x5176;&#x5B83;&#x65B9;&#x6CD5;&#x6784;&#x9020;&#xFF0C;&#x6BD4;&#x5982;&#x53CD;&#x5C04;</li>
+<li>&#x6216;&#x8005;&#x5DF2;&#x7ECF;&#x5B58;&#x8FDB;&#x7F13;&#x5B58;&#x4E2D;&#xFF0C;&#x76F4;&#x63A5;&#x53CD;&#x5E8F;&#x5217;&#x5316;&#x7B49;&#x3002;</li>
+</ul>
+<p>&#x5927;&#x591A;&#x6570;&#x7A0B;&#x5E8F;&#x4E0D;&#x4F1A;&#x9009;&#x62E9;&#x76F4;&#x63A5;&#x5B9E;&#x73B0;&#x8BE5;&#x63A5;&#x53E3;&#xFF0C;&#x800C;&#x662F;&#x53BB;&#x7EE7;&#x627F;AbstractModule&#xFF0C;&#x901A;&#x8FC7;configure&#x6765;&#x914D;&#x7F6E;Guice&#x7684;injector&#xFF0C;injector&#x5185;&#x90E8;&#x4F1A;&#x901A;&#x8FC7;&#x6211;&#x4EEC;&#x914D;&#x7F6E;&#x8FC7;&#x7684;bean&#xFF0C;&#x81EA;&#x52A8;&#x53BB;&#x5B9E;&#x73B0;Provider&#x3002;</p>
+<p>&#x6BD4;&#x5982;&#x4E0A;&#x4E00;&#x7AE0;<a href="../chapter2/">&#x5FEB;&#x901F;&#x4E0A;&#x624B;</a>&#x4E2D;&#xFF0C;</p>
+<pre><code>class DemoModule extends AbstractModule {
+  @Provides
+  @Count
+  static Integer provideCount() {
+    return 3;
+  }
+
+  @Provides
+  @Message
+  static String provideMessage() {
+    return &quot;hello world&quot;;
+  }
+}
+</code></pre><ul>
+<li>Provider<string>&#xFF1A;&#x63A5;&#x53E3;&#x7684;get&#x4E2D;&#x8C03;&#x7528;provideMessage&#x65B9;&#x6CD5;&#xFF0C;&#x8FD4;&#x56DE;&quot;hello world&quot;</string></li>
+<li>Provider<integer>&#xFF1A;&#x63A5;&#x53E3;&#x7684;get&#x4E2D;&#x8C03;&#x7528;provideCount&#x65B9;&#x6CD5;&#xFF0C;&#x8FD4;&#x56DE;3</integer></li>
+</ul>
+<h2 id="2-&#x4F7F;&#x7528;-guice">2 &#x4F7F;&#x7528; Guice</h2>
+<p>&#x8981;&#x60F3;&#x4F7F;&#x7528;Guice&#x4F60;&#x5F97;&#x77E5;&#x9053;2&#x4E2A;&#x4E1C;&#x897F;&#xFF1A;</p>
+<ol>
+<li>Configuration&#xFF1A;&#x6211;&#x4EEC;&#x7684;&#x7A0B;&#x5E8F;&#x9700;&#x8981;&#x5F80;<code>Guice map</code>&#x91CC;&#x585E;&#x4E1C;&#x897F;</li>
+<li>Injection&#xFF1A;&#x6211;&#x4EEC;&#x7684;&#x7A0B;&#x5E8F;&#x53EB;<code>Guice</code>&#x4ECE;&#x5B83;&#x7684;<code>map</code>&#x91CC;&#x521B;&#x5EFA;&#x548C;&#x83B7;&#x53D6;&#x6211;&#x4EEC;&#x60F3;&#x8981;&#x7684;<code>bean</code>&#x5B9E;&#x4F8B;</li>
+</ol>
+<h3 id="21-configuration">2.1 Configuration</h3>
+<p>&#x600E;&#x4E48;&#x7ED9;<code>Guice</code>&#x7684;&#x914D;&#x7F6E;&#x585E;&#x4E1C;&#x897F;&#xFF0C;&#x7EE7;&#x800C;&#x586B;&#x5145;&#x5230;<code>Guice map</code>&#x91CC;&#x9762;&#xFF1F;</p>
+<p>&#x7EE7;&#x627F;<code>Guice</code>&#x7684;<code>AbstractModule</code> (&#x6216;&#x8005;<a href="">Just-In-Time bindings</a>)&#xFF0C;&#x901A;&#x5E38;&#x6709;2&#x79CD;&#x65B9;&#x5F0F;&#xFF1A;</p>
+<ol>
+<li>&#x4F7F;&#x7528;&#x50CF;<code>@Provides</code>&#x8FD9;&#x6837;&#x7684;&#x6CE8;&#x89E3;</li>
+<li>&#x5168;&#x7528;<code>Guice</code>&#x7684;<code>Domain Specific Language</code> (DSL)</li>
+</ol>
+<p>&#x6982;&#x5FF5;&#x4E0A;(<code>Conceptually</code>)&#xFF0C;<code>Guice</code>&#x7684;API&#x63D0;&#x4F9B;&#x4E86;&#x4E00;&#x4E9B;&#x7B80;&#x5355;&#x7684;&#x65B9;&#x6CD5;&#x6765;&#x64CD;&#x4F5C;(<code>manipulate</code>)<code>Guice map</code>&#xFF0C;&#x5E76;&#x4E14;&#x76F4;&#x622A;&#x4E86;&#x5F53;&#xFF0C;&#x4E0B;&#x9762;&#x662F;<code>java 8</code>&#x7684;&#x8BED;&#x6CD5;&#x5199;&#x7684;&#x4E00;&#x4E9B;&#x4F8B;&#x5B50;&#xFF0C;&#x7B80;&#x5355;&#x660E;&#x4E86;&#xFF1A;</p>
+<table>
+<thead>
+<tr>
+<th>Guice DSL syntax&#xFF08;&#x6211;&#x4EEC;&#x7A0B;&#x5E8F;&#x4E2D;&#x7684;&#x5199;&#x6CD5;&#xFF09;</th>
+<th>Mental model&#xFF08;Guice&#x5185;&#x90E8;&#x505A;&#x7684;&#x4E8B;&#xFF09;</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>bind(key).toInstance(value)</td>
+<td>map.put(key, () -&gt; value)(instance binding)</td>
+</tr>
+<tr>
+<td>bind(key).toProvider(provider)</td>
+<td>map.put(key, provider)(provider binding)</td>
+</tr>
+<tr>
+<td>bind(key).to(anotherKey)</td>
+<td>map.put(key, map.get(anotherKey))(linked binding)</td>
+</tr>
+<tr>
+<td>@Provides Foo provideFoo() {...}</td>
+<td>map.put(Key.get(Foo.class), module::provideFoo)(provider method binding)</td>
+</tr>
+</tbody>
+</table>
+<h3 id="22-injection">2.2 Injection</h3>
+<p>&#x4F9D;&#x8D56;&#x6CE8;&#x5165;&#x4E2D;&#x6700;&#x91CD;&#x8981;&#x7684;&#x4E8B;&#x60C5;&#x5C31;&#x662F;&#xFF0C;&#x4F60;&#x53EA;&#x9700;&#x8981;&#x58F0;&#x660E;&#x4F60;&#x9700;&#x8981;&#x8FD9;&#x4E9B;&#x4F9D;&#x8D56;&#xFF0C;&#x81EA;&#x7136;&#x4F1A;&#x7531;&#x5BB9;&#x5668;&#x8FD4;&#x56DE;&#x7ED9;&#x4F60;&#x60F3;&#x8981;&#x7684;&#xFF0C;&#x800C;&#x4E0D;&#x662F;&#x8131;&#x79BB;&#x5BB9;&#x5668;&#x7684;&#x4F7F;&#x7528;&#xFF0C;&#x81EA;&#x5DF1;&#x4ECE;&#x5916;&#x9762;&#x5176;&#x5B83;&#x65B9;&#x5F0F;&#x83B7;&#x5F97;&#x4F60;&#x60F3;&#x8981;&#x7684;<code>bean</code>&#x3002;</p>
+<p>&#x50CF;&#x4E0B;&#x9762;&#x8FD9;&#x6837;&#xFF1A;</p>
+<pre><code>class Foo {
+  private Database database;
+
+  @Inject
+  Foo(Database database) {  // We need a database, from somewhere
+    this.database = database;
+  }
+}
+@Provides
+Database provideDatabase(
+    // We need the @DatabasePath String before we can construct a Database
+    @DatabasePath String databasePath) {
+  return new Database(databasePath);
+}
+</code></pre><h2 id="3-&#x4F9D;&#x8D56;&#x6811;&#x72B6;&#x56FE;">3 &#x4F9D;&#x8D56;&#x6811;&#x72B6;&#x56FE;</h2>
+<blockquote>
+<p>When injecting a thing that has dependencies of its own, Guice recursively injects the dependencies.</p>
+</blockquote>
+<p>&#x5F53;&#x6CE8;&#x5165;<code>A</code>&#x65F6;&#xFF0C;&#x53D1;&#x73B0;<code>A</code>&#x8FD8;&#x4F9D;&#x8D56;<code>B</code>&#xFF0C;&#x7136;&#x540E;&#x53BB;&#x6CE8;&#x5165;<code>B</code>&#xFF0C;&#x7ED3;&#x679C;<code>B</code>&#x53C8;&#x4F9D;&#x8D56;<code>C</code>&#xFF0C;&#x63A5;&#x7740;&#x5C31;&#x53BB;&#x6CE8;&#x5165;<code>C</code>&#xFF0C;&#x8FD9;&#x6837;dfs&#x9012;&#x5F52;&#x5730;&#x5411;&#x4E0A;&#x904D;&#x5386;(<code>up through</code>)&#x53BB;&#x6CE8;&#x5165;&#x4F1A;&#x5F62;&#x6210;&#x4F9D;&#x8D56;&#x7684;&#x4E00;&#x6761;&#x7EBF;&#x7684;&#x6811;&#x72B6;&#x56FE;&#x3002;</p>
+<p>&#x4E3A;&#x4E86;&#x4F7F;&#x7528;Injector&#xFF0C;Guice&#x4F1A;&#x53BB;&#x68C0;&#x67E5;&#x8FD9;&#x4E2A;&#x4F9D;&#x8D56;&#x6811;&#xFF0C;&#x5982;&#x679C;&#x51FA;&#x95EE;&#x9898;&#x4E86;&#x4F1A;&#x629B;<code>CreationException</code>&#x3002; </p>
+<footer class="page-footer"><span class="copyright">Copyright &#xA9; qgao 2021-* all right reserved&#xFF0C;powered by Gitbook</span><span class="footer-modification">&#x8BE5;&#x6587;&#x4EF6;&#x4FEE;&#x8BA2;&#x65F6;&#x95F4;&#xFF1A;
+2022-05-29 18:30:06
+</span></footer>
+<script>console.log("plugin-popup....");document.onclick = function(e){ e.target.tagName === "IMG" && window.open(e.target.src,e.target.src)}</script><style>img{cursor:pointer}</style>
+                                
+                                </section>
+                            
+    </div>
+    <div class="search-results">
+        <div class="has-results">
+            
+            <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+            <ul class="search-results-list"></ul>
+            
+        </div>
+        <div class="no-results">
+            
+            <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+            
+        </div>
+    </div>
+</div>
+
+                        </div>
+                    </div>
+                
+            </div>
+
+            
+                
+                <a href="../chapter2/" class="navigation navigation-prev " aria-label="Previous page: Guice 快速上手">
+                    <i class="fa fa-angle-left"></i>
+                </a>
+                
+                
+                <a href="../chapter4/" class="navigation navigation-next " aria-label="Next page: Guice bean的重用(scope)">
+                    <i class="fa fa-angle-right"></i>
+                </a>
+                
+            
+        
+    </div>
+
+    <script>
+        var gitbook = gitbook || [];
+        gitbook.push(function() {
+            gitbook.page.hasChanged({"page":{"title":"Guice 框架模型(mental modal)","level":"1.4","depth":1,"next":{"title":"Guice bean的重用(scope)","level":"1.5","depth":1,"path":"chapter4/index.md","ref":"chapter4/index.md","articles":[]},"previous":{"title":"Guice 快速上手","level":"1.3","depth":1,"path":"chapter2/index.md","ref":"chapter2/index.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["-lunr","-search","search-pro","back-to-top-button","chapter-fold","code","splitter","tbfed-pagefooter","page-treeview","popup","expandable-chapters","-sharing","sharing-plus","page-toc-button"],"pluginsConfig":{"tbfed-pagefooter":{"copyright":"Copyright &copy qgao 2021-*","modify_label":"该文件修订时间：","modify_format":"YYYY-MM-DD HH:mm:ss"},"page-treeview":{"collapsed":false,"copyright":"Copyright &#169; qgao 2021-*","minHeaderCount":"2","minHeaderDeep":"2"},"chapter-fold":{},"splitter":{},"search-pro":{},"sharing-plus":{"qq":false,"all":["facebook","google","twitter","instapaper","linkedin","pocket","stumbleupon"],"douban":false,"facebook":true,"weibo":false,"instapaper":false,"whatsapp":false,"hatenaBookmark":false,"twitter":true,"messenger":false,"line":false,"vk":false,"pocket":true,"google":false,"viber":false,"stumbleupon":false,"qzone":false,"linkedin":false},"popup":{},"code":{"copyButtons":true},"fontsettings":{"theme":"white","family":"sans","size":2},"highlight":{},"page-toc-button":{"maxTocDepth":4,"minTocSize":2},"back-to-top-button":{},"sharing":{"douban":true,"facebook":true,"google":true,"qq":true,"twitter":true,"weibo":true},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"expandable-chapters":{}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"chapter3/index.md","mtime":"2022-05-29T10:30:06.347Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2022-05-29T13:43:31.966Z"},"basePath":"..","book":{"language":""}});
+        });
+    </script>
+</div>
+
+        
+    <script src="../gitbook/gitbook.js"></script>
+    <script src="../gitbook/theme.js"></script>
+    
+        
+        <script src="../gitbook/gitbook-plugin-search-pro/jquery.mark.min.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-search-pro/search.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-back-to-top-button/plugin.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-chapter-fold/chapter-fold.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-code/plugin.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-splitter/splitter.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-expandable-chapters/expandable-chapters.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-sharing-plus/buttons.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-page-toc-button/plugin.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-fontsettings/fontsettings.js"></script>
+        
+    
+
+    </body>
+</html>
+
