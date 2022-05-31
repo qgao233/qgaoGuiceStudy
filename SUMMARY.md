@@ -19,3 +19,4 @@
   * [10 Multibindings](chapter5/section10/index.md)
   * [11 Restricting the Binding Source](chapter5/section11/index.md)
 * [Guice 注入总结(从容器中将bean拿出来)](chapter6/index.md)
+  * [1 Injecting Providers](chapter6/section1/index.md)
