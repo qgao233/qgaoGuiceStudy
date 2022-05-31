@@ -14,3 +14,4 @@
   * [5 Provider Bindings](chapter5/section5/index.md)
   * [6 Untargeted Bindings](chapter5/section6/index.md)
   * [7 Constructor Bindings](chapter5/section7/index.md)
+  * [8 Built-in Bindings](chapter5/section8/index.md)
