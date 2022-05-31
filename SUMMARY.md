@@ -15,3 +15,4 @@
   * [6 Untargeted Bindings](chapter5/section6/index.md)
   * [7 Constructor Bindings](chapter5/section7/index.md)
   * [8 Built-in Bindings](chapter5/section8/index.md)
+  * [9 Just-in-time Bindings](chapter5/section9/index.md)
